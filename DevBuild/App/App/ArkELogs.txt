@@ -1,0 +1,14 @@
+Log: Greeting User...
+Log: Attempting to initialize engine...
+Log: SDL_Init() succeeded!!
+Log: Mix_OpenAudio() succeeded.
+Log: TTF_Init() succeeded.
+Log: Initialize successful!
+Log: (SDL_CreateWindow() succeeded!!
+Log: Attempting to create hardware-accelerated renderer....
+Log: CreateRenderer() succeeded!!
+Log: Opened Assets file
+Log: This is a Zip file
+Log: Assets/
+Log: All Data signature succeeded
+Log: Input Created

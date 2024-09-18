@@ -46,7 +46,8 @@ void ArksEngine::Level::Render(float positionX, float positionY)
 
 void ArksEngine::Level::Render() const
 {
-	m_pLevelImage->RenderTexture(Vector2F{ 0, 0 }, Vector2F{ mWidth, mHeight });
+    if (m_pLevelImage)
+		m_pLevelImage->RenderTexture(Vector2F{ 0, 0 }, Vector2F{ mWidth, mHeight });
 	//m_pCollisionMap->RenderTexture(Vector2F{ 0, 0 }, Vector2F{ mWidth, mHeight });
 }
 

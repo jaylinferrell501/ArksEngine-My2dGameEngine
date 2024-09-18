@@ -27,13 +27,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -99,8 +99,25 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y</Command>
+      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\SDL2_Image.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libjpeg-9.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libpng16-16.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\zlib1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libtiff-5.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\SDL2_mixer.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libFLAC-8.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmodplug-1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmpg123-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libogg-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbis-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbisfile-3.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\SDL2_TTF\lib\x64;$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -119,8 +136,25 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y</Command>
+      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\SDL2_Image.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libjpeg-9.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libpng16-16.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\zlib1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libtiff-5.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\SDL2_mixer.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libFLAC-8.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmodplug-1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmpg123-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libogg-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbis-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbisfile-3.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\SDL2_TTF\lib\x64;$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -136,11 +170,24 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\SDL2_TTF\lib\x64;$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y</Command>
+      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(SolutionDir)x64\$(Configuration)\" /s /e /i /y
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\SDL2_Image.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libjpeg-9.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libpng16-16.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\zlib1.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libtiff-5.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\SDL2_mixer.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libFLAC-8.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmodplug-1.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmpg123-0.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libogg-0.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbis-0.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbisfile-3.dll" "$(SolutionDir)x64\$(Configuration)\"
+copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(SolutionDir)x64\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -161,11 +208,24 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;zlibstat.lib;LuaProject.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\SDL\lib\x64;$(SolutionDir)lib\SDL2_Image\lib\x64;$(SolutionDir)lib\SDL2_Mixer\lib\x64;$(SolutionDir)lib\zlib\contrib\vstudio\vc14\x64\ZlibStat$(Configuration);$(SolutionDir)lib\SDL2_TTF\lib\x64;$(SolutionDir)lib\lua\lib\x64\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y</Command>
+      <Command>xcopy "$(SolutionDir)lib\SDL\lib\x64\SDL2.dll" "$(OutDir)" /s /e /i /y
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\SDL2_Image.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libjpeg-9.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libpng16-16.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\zlib1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Image\lib\x64\libtiff-5.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\SDL2_mixer.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libFLAC-8.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmodplug-1.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libmpg123-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libogg-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbis-0.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_Mixer\lib\x64\libvorbisfile-3.dll" "$(OutDir)"
+copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -137,7 +137,7 @@ int ArksEngine::Core::Initialize() const
         SDL_Quit();
         return -1;
     }
-
+    
     m_pDebug->Log("TTF_Init() succeeded.");
 
     return 0;

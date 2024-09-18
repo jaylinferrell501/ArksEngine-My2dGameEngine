@@ -92,7 +92,10 @@ void ArksEngine::Scene::Render() const
     //    m_pGameObjectManager->Render(levelRenderXOffset);
     //}
 
-    m_pLevel->Render();
+
+    if (m_pLevel)
+		m_pLevel->Render();
+
     m_pGameObjectManager->Render();
 
     GetOwner()->GetRenderer()->RenderPresent();

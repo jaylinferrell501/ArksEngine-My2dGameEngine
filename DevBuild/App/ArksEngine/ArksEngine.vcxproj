@@ -240,6 +240,7 @@ copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="Builders\GameObjectBuilder.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="Components\HealthComponent.h" />
@@ -248,6 +249,7 @@ copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="LuaSystem.h" />
     <ClInclude Include="Components\ScriptComponent.h" />
     <ClInclude Include="TestLuaFunctions.h" />
+    <ClInclude Include="TextUiComponent.h" />
     <ClInclude Include="Utillities\Math.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Components\PhysicsComponent.h" />
@@ -275,6 +277,7 @@ copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Builders\GameObjectBuilder.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="Components\HealthComponent.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -291,6 +294,7 @@ copy "$(SolutionDir)lib\SDL2_TTF\lib\x64\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Components\SpriteComponent.cpp" />
     <ClCompile Include="Components\ScriptComponent.cpp" />
     <ClCompile Include="TestLuaFunctions.cpp" />
+    <ClCompile Include="TextUiComponent.cpp" />
     <ClCompile Include="Utillities\tinyxml2.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Texture.cpp" />

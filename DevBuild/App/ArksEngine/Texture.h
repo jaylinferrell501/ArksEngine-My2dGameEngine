@@ -32,6 +32,9 @@ namespace ArksEngine
 		 */
 		Texture(ArksEngine::Core* pOwner, const char* fileName);
 
+		// Create A new Texture
+		Texture(ArksEngine::Core* pOwner);
+
 		/**
 		 * \brief This is a default Constructor
 		 */
@@ -57,6 +60,9 @@ namespace ArksEngine
 
 		// Gets our actual texture
 		[[nodiscard]] SDL_Texture* GetSDLTexture() const { return m_pTexture; }
+
+		// Set out texture
+		void SetTexture(SDL_Texture* newText) { m_pTexture = newText; }
 
 		// Get information on pixels in textures
 		void AccessPixels(const std::function<void(int x, int y, uint8_t r, uint8_t g, uint8_t b)>& pixelCallback) const;

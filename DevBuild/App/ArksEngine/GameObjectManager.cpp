@@ -44,6 +44,7 @@ void ArksEngine::GameObjectManager::Refresh()
 ArksEngine::GameObject& ArksEngine::GameObjectManager::AddGameObject()
 {
 	const auto game_object = new GameObject();
+
 	std::unique_ptr<GameObject> uPtr{ game_object };
 
 	mGameObjects.emplace_back(std::move(uPtr));

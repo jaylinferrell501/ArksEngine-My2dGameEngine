@@ -16,6 +16,8 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+#include "FontManager.h"
+
 
 bool ArksEngine::Core::ArksEngine_Initialize(const char* name, const char* assetsFileName, int screenWidth, int screenHeight)
 {

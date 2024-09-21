@@ -108,31 +108,60 @@ void ArksEngine::Texture::GetDimensions(int& width, int& height) const
 
 void ArksEngine::Texture::LoadNewTexture(SDL_Renderer* pRenderer)
 {
-	// Get resource data from ResourceManager
-	const std::vector<char>& resourceData =  m_pOwner->GetResourceManager()->GetResource(m_pFileName);
 
-	// Load image from memory
-	SDL_RWops* rwops = SDL_RWFromConstMem(resourceData.data(), resourceData.size());
-	SDL_Surface* pImageSurface = IMG_Load_RW(rwops, 1);
+	// Define the path to the assets folder
+	std::string assetPath = "Assets/";  // Adjust this to your actual assets folder location
+	std::string fullPath = assetPath + m_pFileName;
 
-	//SDL_Surface* pImageSurface = IMG_Load(m_pFileName);
+	// Load image directly from the file in the assets folder
+	SDL_Surface* pImageSurface = IMG_Load(fullPath.c_str());
+
 	if (pImageSurface == nullptr)
 	{
+		// Handle error if the file could not be loaded
 		return;
 	}
-		
 
 	// Convert surface to texture
 	SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pImageSurface);
 	if (pTexture == nullptr)
 	{
+		SDL_FreeSurface(pImageSurface);
 		return;
 	}
 
+	// Store the created texture
 	m_pTexture = pTexture;
 
-	// Free surface
+	// Free the surface after creating the texture
 	SDL_FreeSurface(pImageSurface);
+
+
+	//// Get resource data from ResourceManager
+	//const std::vector<char>& resourceData =  m_pOwner->GetResourceManager()->GetResource(m_pFileName);
+	//
+	//// Load image from memory
+	//SDL_RWops* rwops = SDL_RWFromConstMem(resourceData.data(), resourceData.size());
+	//SDL_Surface* pImageSurface = IMG_Load_RW(rwops, 1);
+	//
+	////SDL_Surface* pImageSurface = IMG_Load(m_pFileName);
+	//if (pImageSurface == nullptr)
+	//{
+	//	return;
+	//}
+	//	
+	//
+	//// Convert surface to texture
+	//SDL_Texture* pTexture = SDL_CreateTextureFromSurface(pRenderer, pImageSurface);
+	//if (pTexture == nullptr)
+	//{
+	//	return;
+	//}
+	//
+	//m_pTexture = pTexture;
+	//
+	//// Free surface
+	//SDL_FreeSurface(pImageSurface);
 }
 
 void ArksEngine::Texture::RenderTexture(Vector2F source, Vector2F destination, Vector2F dimensions) const

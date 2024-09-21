@@ -144,6 +144,11 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Scenes\TestArea.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Background.xml" />
+    <Xml Include="StartButton.xml" />
+    <Xml Include="StartButtonText.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,6 +1,9 @@
 #include "GameObjectBuilder.h"
 #include "../Utillities/tinyxml2.h"
 #include <cstdlib>
+#include <iostream>
+#include <ostream>
+
 #include "../Core.h"
 #include "../Components/ControllerComponent.h"
 #include "../Components/TransformComponent.h"
@@ -9,6 +12,7 @@
 #include "../GameObject.h"
 #include "../GameObjectManager.h"
 #include "../LuaSystem.h"
+#include "../TextUiComponent.h"
 #include "../Components/ColliderComponent.h"
 #include "../Components/ScriptComponent.h"
 #include "../Components/HealthComponent.h"
@@ -57,30 +61,30 @@ void ArksEngineBuilders::GameObjectBuilder::CreateGameObject(const char* pXml_Fi
 			// and add a TransformComponent to the entity with those values
 			elementChild = elementTag->FirstChildElement();
 			const char* pPositionX = elementChild->GetText();
-			float positionX = atoi(pPositionX);
+			float positionX = std::atof(pPositionX);
 
 			elementChild = elementChild->NextSiblingElement();
 			const char* pPositionY = elementChild->GetText();
-			float positionY = atoi(pPositionY);
+			float positionY = std::atof(pPositionY);
 
 			elementChild = elementChild->NextSiblingElement();
 			const char* pRotationX = elementChild->GetText();
-			float rotationX = atoi(pRotationX);
+			float rotationX = std::atof(pRotationX);
 
 			elementChild = elementChild->NextSiblingElement();
 			const char* pRotationY = elementChild->GetText();
-			float rotationY = atoi(pRotationY);
+			float rotationY = std::atof(pRotationY);
 
 			elementChild = elementChild->NextSiblingElement();
 			const char* pScaleX = elementChild->GetText();
-			float scaleX = atoi(pScaleX);
+			float scaleX = std::atof(pScaleX);
 
 			elementChild = elementChild->NextSiblingElement();
 			const char* pScaleY = elementChild->GetText();
-			float scaleY = atoi(pScaleY);
+			float scaleY = std::atof(pScaleY);
 
 			game_object.AddComponent<ArksEngineComponents::TransformComponent>();
-			game_object.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(positionX, positionY);
+			game_object.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(positionX * 32, positionY * 32);
 			game_object.GetComponent<ArksEngineComponents::TransformComponent>().SetRotation(rotationX, rotationY);
 			game_object.GetComponent<ArksEngineComponents::TransformComponent>().SetScale(scaleX, scaleY);
 
@@ -100,7 +104,64 @@ void ArksEngineBuilders::GameObjectBuilder::CreateGameObject(const char* pXml_Fi
 			const char* pFrameSpeed = elementChild->GetText();
 			int speed = atoi(pFrameSpeed);
 
-			game_object.AddComponent<ArksEngineComponents::SpriteComponent>(m_pOwner, pFileName, frames, speed);
+			elementChild = elementChild->NextSiblingElement();
+			const char* pRValue = elementChild->GetText();
+			uint8_t textureColorValue_R = atoi(pRValue);
+
+			elementChild = elementChild->NextSiblingElement();
+			const char* pGValue = elementChild->GetText();
+			uint8_t textureColorValue_G = atoi(pGValue);
+
+			elementChild = elementChild->NextSiblingElement();
+			const char* pBValue = elementChild->GetText();
+			uint8_t textureColorValue_B = atoi(pBValue);
+
+			if (frames != 0)
+				game_object.AddComponent<ArksEngineComponents::SpriteComponent>(m_pOwner, pFileName, frames, speed);
+			else
+				game_object.AddComponent<ArksEngineComponents::SpriteComponent>(m_pOwner, pFileName);
+
+			
+			game_object.GetComponent<ArksEngineComponents::SpriteComponent>().SetTextureColor(textureColorValue_R, textureColorValue_G, textureColorValue_B);
+
+		}
+		else if (componentType == "TextUiComponent")
+		{
+			// Get fileName from the XML
+			elementChild = elementTag->FirstChildElement("fileName");
+			const char* pFileName = elementChild ? elementChild->GetText() : nullptr;
+			if (!pFileName)
+			{
+				pFileName = "";  // Fallback to an empty string if the file name is missing
+			}
+
+			// Get FontSize from the XML
+			elementChild = elementTag->FirstChildElement("FontSize");
+			const char* pFontSize = elementChild ? elementChild->GetText() : nullptr;
+			int fontSize = 0;  // Default to 0 if font size is missing
+			if (pFontSize)
+			{
+				fontSize = atoi(pFontSize);  // Convert font size string to integer
+			}
+
+			// Get pText from the XML
+			elementChild = elementTag->FirstChildElement("pText");
+			const char* pText = elementChild ? elementChild->GetText() : nullptr;
+
+			if (!pText)
+			{
+				std::cout << "Warning: pText is nullptr!" << std::endl;
+				pText = "";  // Fallback to an empty string if the text is missing
+			}
+
+			// Use std::string internally to ensure the string data is managed properly
+			std::string safeText = pText ? pText : "";
+
+			// Debug: Print out the parsed data to check if it's valid
+			std::cout << "Parsed Data -> FileName: " << pFileName << ", FontSize: " << fontSize << ", Text: " << safeText << std::endl;
+
+			// Now, safely pass the std::string data converted to const char* to AddComponent
+			game_object.AddComponent<ArksEngineComponents::TextUiComponent>(m_pOwner, pFileName, fontSize, safeText.c_str());
 
 		}
 		else if (componentType == "ColliderComponent")
@@ -171,6 +232,7 @@ void ArksEngineBuilders::GameObjectBuilder::CreateGameObject(const char* pXml_Fi
 		{
 			game_object.AddComponent<ArksEngineComponents::HealthComponent>(m_pOwner);
 		}
+		
 
 
 		// Move to the next sibling element (next component)

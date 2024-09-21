@@ -29,7 +29,7 @@ bool ArksEngine::FontManager::LoadFont(const char* path, int fontSize)
 	return true;
 }
 
-SDL_Texture* ArksEngine::FontManager::RenderText(const char* text, const SDL_Color& color)
+SDL_Texture* ArksEngine::FontManager::RenderText(const std::string& text, const SDL_Color& color)
 {
 	if (m_pFont == nullptr)
 	{
@@ -37,7 +37,7 @@ SDL_Texture* ArksEngine::FontManager::RenderText(const char* text, const SDL_Col
 		return nullptr;
 	}
 
-	SDL_Surface* surface = TTF_RenderText_Solid(m_pFont, text, color);
+	SDL_Surface* surface = TTF_RenderText_Solid(m_pFont, text.c_str(), color);
 	if (surface == nullptr) 
 	{
 		m_pOwner->GetDebug_Log()->Error("Error creating surface!");
@@ -56,8 +56,8 @@ SDL_Texture* ArksEngine::FontManager::RenderText(const char* text, const SDL_Col
 	return texture;
 }
 
-void ArksEngine::FontManager::RenderTextToScreen(const char* text, const SDL_Color& color,
-	int x, int y)
+void ArksEngine::FontManager::RenderTextToScreen(const std::string& text, const SDL_Color& color,
+	int x, int y, int width, int height)
 {
 	// Render the text to a texture
 	SDL_Texture* texture = RenderText(text, color);
@@ -68,8 +68,8 @@ void ArksEngine::FontManager::RenderTextToScreen(const char* text, const SDL_Col
 	}
 
 	// Get texture dimensions
-	int textWidth = x;
-	int textHeight = y;
+	int textWidth = width;
+	int textHeight = height;
 	SDL_QueryTexture(texture, nullptr, nullptr, &textWidth, &textHeight);
 
 	// Define destination rectangle for rendering

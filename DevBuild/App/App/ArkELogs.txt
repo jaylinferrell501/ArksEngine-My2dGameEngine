@@ -9,6 +9,7 @@ Log: Attempting to create hardware-accelerated renderer....
 Log: CreateRenderer() succeeded!!
 Log: Opened Assets file
 Log: This is a Zip file
-Log: Assets/
-Log: All Data signature succeeded
+Log: StartButton.png
+Log: File signature failed
+Log: Failed to load assets.zip
 Log: Input Created

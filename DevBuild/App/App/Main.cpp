@@ -4,7 +4,7 @@ int main()
 {
 	Game game;
 
-	game.InitializeApp("PrototypeGameTest", "Assets/Assets.zip", 960, 480);
+	game.InitializeApp("PrototypeGameTest", "Assets/Assets.zip", 1024, 768);
 
 	game.RunEngine();
 

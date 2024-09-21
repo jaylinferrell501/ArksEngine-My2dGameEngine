@@ -10,23 +10,28 @@ TestArea::TestArea(Game* pOwner)
 
 void TestArea::Enter()
 {
-	ArksEngine::GameObject& helloText(GetEntityManager()->AddGameObject());
-	helloText.AddComponent<ArksEngineComponents::TransformComponent>();
-	helloText.AddComponent<ArksEngineComponents::TextUiComponent>(GetOwner(), "Assets/Roboto-Black.ttf", 24, "Hello World");
+	//ArksEngine::GameObject& backGround(GetEntityManager()->AddGameObject());
+	//backGround.AddComponent<ArksEngineComponents::SpriteComponent>(GetOwner(), "StartBackground.png");
+	//backGround.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(32 * 0, 32 * 0);
+	//backGround.GetComponent<ArksEngineComponents::TransformComponent>().SetScale(1024, 768);
 
-	helloText.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(32 * 40, 32 * 23);
-	helloText.GetComponent<ArksEngineComponents::TransformComponent>().SetScale(0, 0);
+	LoadEntity("Background.xml");
 
+	//ArksEngine::GameObject& startButton(GetEntityManager()->AddGameObject());
+	//startButton.AddComponent<ArksEngineComponents::SpriteComponent>(GetOwner(), "StartButton.png");
+	//startButton.GetComponent<ArksEngineComponents::SpriteComponent>().SetTextureColor(0,255,0);
+	//startButton.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(32 * 3, 32 * 22);
+	//startButton.GetComponent<ArksEngineComponents::TransformComponent>().SetScale(812, 64);
 
+	LoadEntity("StartButton.xml");
 
-	//GetOwner()->GetFontManager()->LoadFont("Assets/Roboto-Black.ttf", 24);
-	//
-	//ArksEngine::Texture* hello = new ArksEngine::Texture(GetOwner());
-	//
-	//// Set the texture from the rendered text
-	//hello->SetTexture(GetOwner()->GetFontManager()->RenderText("Hello, SDL_TTF!", ArksEngine::FontManager::BLACK, GetOwner()->GetRenderer()->GetSDLRenderer()));
-	//
-	//hello->RenderTexture({0, 0}, {10, 10},{20, 20});
+	//ArksEngine::GameObject& startButtonText(GetEntityManager()->AddGameObject());
+	//startButtonText.AddComponent<ArksEngineComponents::TextUiComponent>(GetOwner(), "Assets/ComicNeue-Bold.ttf", 30, "PRESS  START");
+	//startButtonText.GetComponent<ArksEngineComponents::TransformComponent>().SetPosition(32 * 13, 32 * 22.5);
+	//startButtonText.GetComponent<ArksEngineComponents::TransformComponent>().SetScale(812, 64);
+
+	LoadEntity("StartButtonText.xml");
+
 }
 
 void TestArea::Exit()

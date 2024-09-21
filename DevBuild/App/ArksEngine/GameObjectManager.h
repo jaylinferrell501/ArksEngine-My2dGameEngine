@@ -28,7 +28,7 @@ namespace ArksEngine
 		// Removes entities that are not active from the manager.
 		void Refresh();
 
-		// Adds a new entity to the manager.
+		// Adds a new entity to the manager. [entity Comes with a transform component]
 		GameObject& AddGameObject();
 
 		GameObject* GetGameObject(const std::string& name) const; const

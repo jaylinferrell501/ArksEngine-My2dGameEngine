@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 #include "Components/Component.h"
 
 namespace ArksEngine
@@ -10,13 +12,19 @@ namespace ArksEngine
 
 namespace ArksEngineComponents
 {
+	class TransformComponent;
+
 	class TextUiComponent : public Component
 	{
 		ArksEngine::FontManager* m_pFontManager = nullptr;
-		const char* m_pText = nullptr;
+		ArksEngineComponents::TransformComponent* m_pTransformRef = nullptr;
+		std::string m_text;  // Store the text as a std::string to manage memory safely
+		int m_pFontSize = 0;
 
 	public:
 		TextUiComponent(ArksEngine::Core* pRenderer, const char* path, int fontSize, const char* pText);
+
+		void Init() override;
 
 		void Update(double deltaTime) override;
 

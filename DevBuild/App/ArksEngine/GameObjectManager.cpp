@@ -1,5 +1,6 @@
 #include "GameObjectManager.h"
 #include "GameObject.h"
+#include "Components/TransformComponent.h"
 
 void ArksEngine::GameObjectManager::Update(double deltaTime) const
 {
@@ -45,11 +46,11 @@ ArksEngine::GameObject& ArksEngine::GameObjectManager::AddGameObject()
 {
 	const auto game_object = new GameObject();
 
+	game_object->AddComponent<ArksEngineComponents::TransformComponent>(); // All Game objects should auto have a transform
+
 	std::unique_ptr<GameObject> uPtr{ game_object };
 
 	mGameObjects.emplace_back(std::move(uPtr));
-
-	// Expose GameObject methods to Lua
 	
 
 	return *game_object;

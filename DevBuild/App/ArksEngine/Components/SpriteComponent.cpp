@@ -1,5 +1,6 @@
 #include "SpriteComponent.h"
 
+#include <SDL_render.h>
 #include <SDL_timer.h>
 
 #include "ControllerComponent.h"
@@ -73,6 +74,16 @@ void ArksEngineComponents::SpriteComponent::SwitchTexture(const std::string& key
 	}
 
 	m_pTexture = mTextures[key];
+}
+
+void ArksEngineComponents::SpriteComponent::SetTextureColor(uint8_t r, uint8_t g, uint8_t b) const
+{
+	if (m_pTexture)
+	{
+
+		// Use SDL_SetTextureColorMod with standard uint8_t types
+		SDL_SetTextureColorMod(m_pTexture->GetSDLTexture(), r, g, b);
+	}
 }
 
 void ArksEngineComponents::SpriteComponent::Update(double deltaTime)

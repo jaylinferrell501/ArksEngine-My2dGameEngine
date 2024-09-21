@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 typedef struct _TTF_Font TTF_Font;
 
@@ -28,10 +29,10 @@ namespace ArksEngine
 		bool LoadFont(const char* path, int fontSize);
 
 		// Render text as an SDL_Texture using char* instead of std::string
-		SDL_Texture* RenderText(const char* text, const SDL_Color& color );
+		SDL_Texture* RenderText(const std::string& text, const SDL_Color& color );
 
 		// New method: Render text directly to the screen
-		void RenderTextToScreen(const char* text, const SDL_Color& color, int x, int y);
+		void RenderTextToScreen(const std::string& text, const SDL_Color& color, int x, int y, int width, int height);
 
 
 		// Close and free the font resource

@@ -1,9 +1,12 @@
 #pragma once
+#include <cstdint>  // For uint8_t
 #include <string>
 #include <unordered_map>
 
 #include "Component.h"
 #include "../Utillities/Vector2.h"
+
+struct SDL_Texture;
 
 namespace ArksEngine
 {
@@ -42,6 +45,8 @@ namespace ArksEngineComponents
 
 		// Method to switch the active texture
 		void SwitchTexture(const std::string& key);
+
+		void SetTextureColor(uint8_t r, uint8_t g, uint8_t b) const;
 
 		void Update(double deltaTime) override;
 

@@ -36,4 +36,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Background.xml" />
+    <Xml Include="StartButton.xml" />
+    <Xml Include="StartButtonText.xml" />
+  </ItemGroup>
 </Project>
